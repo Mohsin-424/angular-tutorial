@@ -4,8 +4,20 @@
         <div class="panel-heading">{{ element.name }}</div>
         <div class="panel-body">
           <p>
-            <strong *ngIf="element.type === 'server'" style="color: red">{{ element.content }}</strong>
-            <em *ngIf="element.type === 'blueprint'">{{ element.content }}</em>
+           <ng-content></ng-content>
+           <!-- ng content acts as a hook to an thml page -->
+<!-- The ng-content tag is used for content projection. It is basically a placeholder to hold the dynamic content until it is parsed. Once the template is parsed, Angular replaces the tag with content -->
           </p>
         </div>
       </div>
+
+
+
+
+
+
+
+
+
+
+

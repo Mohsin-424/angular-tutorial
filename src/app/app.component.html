@@ -6,11 +6,18 @@
     <hr>
     <div class="row">
         <div class="col-xs-12">
+          <!-- ngFor andNGiF WILLBE DELETED A due to ngContent -->
             <app-server-element
                 *ngFor="let serverElement of serverElements"
+
                 [srvElement]="serverElement"
-                ></app-server-element>
+                >
+
+       <strong
+       *ngIf="serverElement.type === 'server'" style="color: red">{{ serverElement.content }}</strong>
+            <em
+            *ngIf="serverElement.type === 'blueprint'">{{ serverElement.content }}</em></app-server-element>
         </div>
     </div>
 </div>
-<!-- Encapsulation is a process in ehich we can take an example that View encapsulation defines whether the template and styles defined within the component can affect the whole application or vice versa. Angular provides three encapsulation strategies: Emulated (default) - styles from main HTML propagate to the component.  -->
+
