@@ -1,32 +1,29 @@
-import { Component ,OnInit} from '@angular/core';
-
-type ServerElement = { type: string; name: string; content: string };
-type ServerElements = ServerElement[];
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-cockpit',
-  templateUrl: './cockpit.component.html',
-  styleUrls: ['./cockpit.component.css'],
+  selector: "app-cockpit",
+  templateUrl: "./cockpit.component.html",
+  styleUrls: ["./cockpit.component.css"],
 })
 export class CockpitComponent implements OnInit {
-  // Rest of your component code...
-  constructor(){}
-ngOnInit(){
+  newServerName = "";
+  newServerContent = "";
+  constructor() {}
+  ngOnInit() {}
 
-}
-onAddServer(){
-  this.serverElements.push({
-    type:'server',
-    name: this.newServerName,
-    content: this.newServerContent
-  });
-}
-onAddBlueprint () {
-    this. serverElements.push({
-      type:'server',
-      name: this.newServerName,
-      content: this. newServerContent,
-    });
+  onAddServer() {
+
+    // this.serverElements.push({
+  //     type: 'server',
+  //     name: this.newServerName,
+  //     content: this.newServerContent,
+  //   });
+  }
+  onAddBlueprint() {
+    // this.serverElements.push({
+    //   type: 'blueprint',
+    //   name: this.newServerName,
+    //   content: this.newServerContent,
+    // });
   }
 }
-
