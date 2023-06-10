@@ -1,7 +1,8 @@
 .container {
   margin-top: 30px;
+  padding:30px 40px;
 }
 
 p {
-  color: blue;
+  color: rgb(7, 44, 252);
 }
