@@ -1,0 +1,8 @@
+button:hover{
+text-decoration: dotted;
+background-color: #3aee04;
+text-overflow: ellipsis;
+text-transform: capitalize;
+text-decoration-color: aqua;
+
+}

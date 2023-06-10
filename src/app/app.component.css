@@ -6,3 +6,10 @@
 p {
   color: rgb(7, 44, 252);
 }
+label{
+  background-color: #00f815;
+
+}
+label:hover{
+  background-color: #002fff;
+}
