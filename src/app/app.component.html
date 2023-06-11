@@ -8,6 +8,7 @@
         <div class="col-xs-12">
           <button class="btn btn-primary" (onclick)="onChangesFirst">Changes first Element</button>
           <!-- ngFor and NGiF WILLBE DELETED A due to ngContent -->
+          <button class="btn btn-danger" (onclick)="onDestroyFirst">Terminate Dom Page</button>
             <app-server-element
                 *ngFor="let serverElement of serverElements"
                 [srvElement]="serverElement"
