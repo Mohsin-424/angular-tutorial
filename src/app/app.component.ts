@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,Input } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -24,4 +24,8 @@ export class AppComponent {
       content: serverData.serverContent,
     });
   }
+  onChangesFirst() {
+    this.serverElements[0].name = 'Changed!';
+  }
 }
+

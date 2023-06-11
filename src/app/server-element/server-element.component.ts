@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation,OnChanges,SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-server-element',
@@ -7,13 +7,25 @@ import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 
   encapsulation: ViewEncapsulation.ShadowDom,
 })
-export class ServerElementComponent implements OnInit {
-  // Assighning an Alias
+export class ServerElementComponent implements OnInit, OnChanges {
+  // Assigning an Alias
   @Input('srvElement') element!: {
-    type: String;
-    name: string;
-    content: string;
+    type: string,
+    name: string,
+    content: string
   };
-  constructor() {}
-  ngOnInit() {}
+  @Input() name!: string;
+
+  constructor() {
+    console.log('Constructer has been called');
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
+    //Add '${implements OnChanges}' to the class.
+    console.log('NgOnchages called');
+    console.log(changes);
+  }
+  ngOnInit() {
+    console.log('NgOnInt has been initalized');
+  }
 }

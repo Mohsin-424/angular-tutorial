@@ -6,12 +6,13 @@
     <hr>
     <div class="row">
         <div class="col-xs-12">
-          <!-- ngFor andNGiF WILLBE DELETED A due to ngContent -->
+          <button class="btn btn-primary" (onclick)="onChangesFirst">Changes first Element</button>
+          <!-- ngFor and NGiF WILLBE DELETED A due to ngContent -->
             <app-server-element
                 *ngFor="let serverElement of serverElements"
-
                 [srvElement]="serverElement"
-                >
+                [name]="serverElement.name">
+
 
        <strong
        *ngIf="serverElement.type === 'server'" style="color: red">{{ serverElement.content }}</strong>

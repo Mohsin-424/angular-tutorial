@@ -20,7 +20,8 @@ export class CockpitComponent implements OnInit {
   // newServerContent = '';
   @ViewChild('serverContentInput') serverContentInput!: ElementRef;
   constructor() {}
-
+// Life Cycle Hook ngOnit
+// ngOnInit  will be executed fist of all
   ngOnInit(): void {}
   onAddServer(serverName: HTMLInputElement) {
     this.serverCreated.emit({
