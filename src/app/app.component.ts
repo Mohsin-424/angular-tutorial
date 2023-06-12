@@ -1,4 +1,5 @@
-import { Component,Input } from '@angular/core';
+import { ServerElementComponent } from './server-element/server-element.component';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -27,8 +28,7 @@ export class AppComponent {
   onChangesFirst() {
     this.serverElements[0].name = 'Changed!';
   }
-  onDestroyFirst() {
-    this.serverElements.splice(0,2);
+  onDestroy(){
+    this.serverElements.splice(0,1);
   }
 }
-

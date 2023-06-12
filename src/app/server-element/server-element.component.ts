@@ -1,10 +1,10 @@
-import { Component, OnInit, Input, ViewEncapsulation,OnChanges,SimpleChanges,DoCheck ,AfterContentInit
-,AfterViewChecked,OnDestroy
-
-
-  //Called after every check of the component's or directive's content.
-  //Add 'implements AfterContentChecked' to the class.
-
+import {
+  Component,
+  OnInit,
+  Input,
+  ViewEncapsulation,
+  OnChanges,
+  SimpleChanges,
 } from '@angular/core';
 
 @Component({
@@ -14,18 +14,12 @@ import { Component, OnInit, Input, ViewEncapsulation,OnChanges,SimpleChanges,DoC
 
   encapsulation: ViewEncapsulation.ShadowDom,
 })
-export class ServerElementComponent implements OnInit, OnChanges , DoCheck , AfterContentInit, AfterViewChecked,OnDestroy{
-
-
-  //Called every time that the input properties of a component or a directive are checked. Use it to extend change detection by performing a custom check.
-  //Add 'implements DoCheck' to the class.
-
-
+export class ServerElementComponent implements OnInit, OnChanges {
   // Assigning an Alias
   @Input('srvElement') element!: {
-    type: string,
-    name: string,
-    content: string
+    type: string;
+    name: string;
+    content: string;
   };
   @Input() name!: string;
 
@@ -40,23 +34,5 @@ export class ServerElementComponent implements OnInit, OnChanges , DoCheck , Aft
   }
   ngOnInit() {
     console.log('NgOnInt has been initalized');
-  }
-  ngDoCheck(){
-    console.log("ngDoCheck has been called");
-  }
-  ngAfterContentInit() {
-    //Called after ngOnInit when the component's or directive's content has been initialized.
-    //Add 'implements AfterContentInit' to the class.
-    console.log('AfterContent Init has been called ');
-  }
-  ngAfterViewChecked() {
-    //Called after every check of the component's or directive's content.
-    //Add 'implements AfterContentChecked' to the class.
-    console.log("NgAfterViewChecked  has been called")
-  }
-  ngOnDestroy(): void {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
-    console.log("ngOnDestroy haS BEEN CALLED")
   }
 }
