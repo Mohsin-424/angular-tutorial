@@ -4,7 +4,9 @@ import {
   EventEmitter,
   Output,
   ViewChild,
+  ContentChild,
   ElementRef,
+
 } from '@angular/core';
 
 @Component({
@@ -13,7 +15,7 @@ import {
   styleUrls: ['./cockpit.component.css'],
 })
 export class CockpitComponent implements OnInit {
-  @Output() serverCreated = new EventEmitter<{
+  @Output() serverCreated = new EventEmitter <{
     serverName: string;
     serverContent: string;
   }>();
@@ -24,6 +26,7 @@ export class CockpitComponent implements OnInit {
   newServerName = '';
   // newServerContent = '';
   @ViewChild('serverContentInput') serverContentInput!: ElementRef;
+  // @ContentChild('serverContentInput') serverContentInput!: ElementRef;
   constructor() {}
   // Life Cycle Hook ngOnit
   // ngOnInit  will be executed fist of all
