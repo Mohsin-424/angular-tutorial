@@ -8,7 +8,9 @@ import { Component, OnInit, Input } from '@angular/core';
 export class EvenComponent implements OnInit {
   @Input() number!: number;
 
-  constructor() {}
+  constructor() {
+
+  }
 
   ngOnInit() {}
 }
