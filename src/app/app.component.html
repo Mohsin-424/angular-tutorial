@@ -16,13 +16,20 @@
           </li>
           </div>
           <!-- for even numbers -->
-          <!-- <div ngIf="onlyOdd"> -->
+          <ng-template [ngIf]="!onlyOdd">
+            <div >
           <li 
           class="list-group-item"
+          [ngClass]="{even: even%2 !==0}"
+          [ngStyle]="{backgroundColor: even%2 !==0 ? 'yellow':'trasnparent'}"
           *ngFor="let even of evenNumbers">
-            {{even}}
-          </li>
-          <!-- </div> -->
+          {{even}}
+        </li>
+        </div>
+      </ng-template>
+           
+        
+        
         </ul>
         <p appBasicHighlight>Style me With basic Directive</p>
 
