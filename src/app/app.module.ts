@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Task1Component } from './task1/task1.component';
 import { BetterHighlightDirective } from './better-highlight.directive';
+import { UnlessDirective } from './unless.directive';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { BetterHighlightDirective } from './better-highlight.directive';
     Task1Component,
     BasicHighlightDirective,
     BetterHighlightDirective,
+    UnlessDirective,
   ],
 
   imports: [

@@ -5,7 +5,7 @@
         <br><br>
         <ul class="list-group">
           <!-- For Odd Numbers -->
-          <div *ngIf="onlyOdd">
+          <!-- <div *ngIf="onlyOdd">
           <li 
           class="list-group-item"
           
@@ -15,9 +15,25 @@
             {{odd}}
           </li>
           </div>
-          <!-- for even numbers -->
-          <ng-template [ngIf]="!onlyOdd">
-            <div >
+           for even numbers  -->
+          <!-- <ng-template [ngIf]="!onlyOdd">
+            <div > -->
+          <!-- <li 
+          class="list-group-item"
+          [ngClass]="{even: even%2 !==0}"
+          [ngStyle]="{backgroundColor: even%2 !==0 ? 'yellow':'trasnparent'}"
+          *ngFor="let even of evenNumbers">
+          {{even}}
+        </li>
+        </div>
+      </ng-template> 
+            -->
+        
+
+
+
+     <!-- Using Unless structural directive -->
+            <div *appUnless='!onlyOdd' >
           <li 
           class="list-group-item"
           [ngClass]="{even: even%2 !==0}"
@@ -26,11 +42,9 @@
           {{even}}
         </li>
         </div>
-      </ng-template>
-           
-        
         
         </ul>
+
         <p appBasicHighlight>Style me With basic Directive</p>
 
 
