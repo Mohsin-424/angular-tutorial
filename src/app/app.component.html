@@ -1,21 +1,21 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-      <button class="btn btn-success" (click)="onlyOdd=!onlyOdd">Only show add numbers</button>
+      <button class="btn btn-success" (click)="onlyOdd=!onlyOdd">Only show Odd numbers</button>
         <br><br>
         <ul class="list-group">
           <!-- For Odd Numbers -->
-          <!-- <div *ngIf="onlyOdd">
+          <div *ngIf="onlyOdd">
           <li 
           class="list-group-item"
           
-          [ngClass]="{odd:  odd % 2 !==0}"
+          [ngClass]="{odd: odd %2 !==0}"
          
           *ngFor="let odd of oddNumbers">
             {{odd}}
           </li>
           </div>
-           for even numbers  -->
+           <!-- for even numbers  -->
           <!-- <ng-template [ngIf]="!onlyOdd">
             <div > -->
           <!-- <li 
@@ -33,7 +33,7 @@
 
 
      <!-- Using Unless structural directive -->
-            <div *appUnless='!onlyOdd' >
+            <div *appUnless='onlyEven' >
           <li 
           class="list-group-item"
           [ngClass]="{even: even%2 !==0}"
@@ -45,11 +45,29 @@
         
         </ul>
 
+
+
+
+
+
+
+
+
+
+
+
         <p appBasicHighlight>Style me With basic Directive</p>
 
 
 
         <p [appBetterHighlight]="'red'"[defaultColor]="'yellow'" >Style me with a better directive</p>
+        <div [ngSwitch]="value">
+            <p *ngSwitchCase="5">Value  is 5</p>
+            <p *ngSwitchCase="10">Value  is 10</p>
+            <p *ngSwitchCase="100">Value  is 100</p>
+            <p *ngSwitchCase="1000">Value  is 10000</p>
+            <p *ngSwitchDefault>Value is default</p>
+        </div>
       </div>
   </div>
 </div>
