@@ -1,0 +1,14 @@
+
+<h1>Tasks List</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-cs-12">
+            <ul class="list-group" >
+                <li class="group-list-item" *ngFor="let task of tasks">{{task.name}}
+                <span *ngIf="task.completed">Completed</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
