@@ -1,33 +1,28 @@
+import { AccountService } from './account.service';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [AccountService]
 })
 export class AppComponent {
-  accounts = [
-    {
-      name: 'Master Account1',
-      status: 'active'
-    },
-    {
-      name: 'Testaccount2',
-      status: 'inactive'
-    },
-    {
-      name: 'Hidden Account3',
-      status: 'unknown'
-    }
-  ];
+ accounts:{name:string, status:string} []= [];
+ constructor(private accountService:AccountService) {
 
-  onAccountAdded(newAccount: {name: string, status: string}) {
-    this.accounts.push(newAccount);
-  }
+ }
+ngOnInit() {
+  // to access all the data in the service  we set it equal to accountService.accounts
+  this.accounts = this.accountService.accounts;
 
-  onStatusChanged(updateInfo: 
-    {id: number, newStatus: string}) {
-    this.accounts[updateInfo.id].status = updateInfo.newStatus;
-  }
+
+
+
+
+  // addAccount(name:string , status:string) {
+  //   this.accounts.push({name})
+  // }
+}
   
 }
