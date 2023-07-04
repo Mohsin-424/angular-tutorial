@@ -5,7 +5,6 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [AccountService]
 })
 export class AppComponent {
  accounts:{name:string, status:string} []= [];
@@ -20,9 +19,6 @@ ngOnInit() {
 
 
 
-  // addAccount(name:string , status:string) {
-  //   this.accounts.push({name})
-  // }
 }
   
 }

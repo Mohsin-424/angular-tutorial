@@ -18,13 +18,12 @@ constructor(private loggingService:LoggingService,
   private accountService:AccountService){}
 
 
-// Button Click Caller
   onSetTo(status: string) {
-  //  Call account Status
-this.accountService.updateStatus(this.id, status);
+
+    this.accountService.updateStatus(this.id, status);
     
 
- this.loggingService.logStatusChange(status);
+
 
   }
 }
