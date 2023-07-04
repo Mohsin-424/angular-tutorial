@@ -1,6 +1,6 @@
 
 import { LoggingService } from './logging.service';
-import { Injectable } from '@angular/core';
+import { Injectable,EventEmitter } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +30,7 @@ export class AccountService {
   }
 
 
+statusUpdated = new EventEmitter<string>();
 
 updateStatus( id:number, status: string){
 this.accounts[id].status = status;
@@ -37,5 +38,8 @@ this.accounts[id].status = status;
 this.loggingService.logStatusChange(status);
 }
 
-
 }
+
+
+
+
