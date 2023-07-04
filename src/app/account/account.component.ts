@@ -20,7 +20,7 @@ constructor(private loggingService:LoggingService,
 
 // Button Click Caller
   onSetTo(status: string) {
-   
+  //  Call account Status
 this.accountService.updateStatus(this.id, status);
     
 
