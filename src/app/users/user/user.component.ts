@@ -1,4 +1,4 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Params } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -12,12 +12,19 @@ export class UserComponent implements OnInit {
   constructor ( private route: ActivatedRoute ) { }
 
   ngOnInit() {
-
+// We load our data to DOM using snapshot object in route
     this.user = {
-      id:this.route.snapshot.params['id'],
-      name: this.route.snapshot.params['name']
+      id: this.route.snapshot.params['id'],
+      name:  this.route.snapshot.params['name']
     };
-    
+    // params is an observable is feature to perform asynchronous tasks
+
+      this.route.params.subscribe(
+      ( params : Params ) => {
+        this.user.id = params['id'];
+        this.user.name = params['name'];
+      }
+      );
   }
 
 }
