@@ -2,17 +2,17 @@ export class ServersService {
   private servers = [
     {
       id: 1,
-      name: 'Productionserver Mohsin',
+      name: 'Productionserver ',
       status: 'online'
     },
     {
       id: 2,
-      name: 'TestserverMohsiin2',
+      name: 'Testserver',
       status: 'offline'
     },
     {
       id: 3,
-      name: 'DevserverWao',
+      name: 'Devserver',
       status: 'offline'
     }
   ];
