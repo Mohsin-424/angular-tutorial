@@ -9,16 +9,21 @@ import { ServersService } from '../servers.service';
 })
 export class EditServerComponent implements OnInit {
   server!: {id: number, name: string, status: string};
+
+
   serverName = '';
   serverStatus = '';
 
   constructor(private serversService: ServersService) { }
 
   ngOnInit() {
+      this.server = this.serversService.getServer(1)!;
+    if (this.server !== undefined) {
+  this.server.id;
+}
 
-    // this.server = this.serversService.getServer(1);
     this.serverName = this.server.name;
-    this.serverStatus = this.server.status;
+    this.serverStatus = this.server.status
   }
 
   onUpdateServer() {
@@ -26,3 +31,4 @@ export class EditServerComponent implements OnInit {
   }
 
 }
+

@@ -19,7 +19,7 @@ export class UserComponent implements OnInit,OnDestroy {
       id: this.route.snapshot.params['id'],
       name:  this.route.snapshot.params['name']
     };
-    // params is an observable is feature to perform asynchronous tasks
+    // params is an observable and it is a feature to perform asynchronous tasks
 
       this.paramsSubscription = this.route.params.subscribe(
       ( params : Params ) => {
@@ -28,7 +28,7 @@ export class UserComponent implements OnInit,OnDestroy {
       }
       );
   }
-
+// To destroy after subscription has been callled
     ngOnDestroy() {
       this.paramsSubscription.unsubscribe();
     }
