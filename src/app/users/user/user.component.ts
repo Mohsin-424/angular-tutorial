@@ -8,7 +8,7 @@ import { Subscription } from "rxjs";
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit,OnDestroy {
-  user!: {id: number, name: string};
+  user!: { id: number, name: string };
   paramsSubscription!: Subscription;
 // To get data from user child component
   constructor ( private route: ActivatedRoute ) { }
@@ -17,16 +17,17 @@ export class UserComponent implements OnInit,OnDestroy {
 // We load our data to DOM using snapshot object in route
     this.user = {
       id: this.route.snapshot.params['id'],
-      name:  this.route.snapshot.params['name']
+      name: this.route.snapshot.params['name']
     };
     // params is an observable and it is a feature to perform asynchronous tasks
 
-      this.paramsSubscription = this.route.params.subscribe(
-      ( params : Params ) => {
-        this.user.id = params['id'];
-        this.user.name = params['name'];
+      this.paramsSubscription = this.route.params.subscribe (
+      ( params : Params ) =>{
+        this.user.id = params['id'],
+        this.user.name = params['name']
       }
       );
+      
   }
 // To destroy after subscription has been callled
     ngOnDestroy() {

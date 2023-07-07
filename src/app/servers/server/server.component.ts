@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
@@ -11,7 +12,8 @@ import { ServersService } from '../servers.service';
 export class ServerComponent implements OnInit {
   server: { id: number; name: string; status: string } | undefined;
 
-  constructor(private serversService: ServersService, private route: ActivatedRoute) {}
+  constructor(private serversService: ServersService, private route: ActivatedRoute,
+    private router: Router) {}
 
   ngOnInit() {
     // Access id using snapshot
@@ -23,5 +25,10 @@ export class ServerComponent implements OnInit {
       const server = this.serversService.getServer(+params['id']);
       this.server = server !== undefined ? server : undefined;
     });
+
+  }
+  onEdit(){
+      this.router.navigate(['edit'], {relativeTo: this.route});
   }
 }
+ 
