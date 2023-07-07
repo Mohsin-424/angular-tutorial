@@ -1,3 +1,4 @@
+import { AuthService } from './../auth.service';
 import { Component, OnInit} from '@angular/core';
 import { Router  } from "@angular/router";
 
@@ -9,7 +10,8 @@ import { Router  } from "@angular/router";
 })
 export class HomeComponent implements OnInit {
   
-  constructor(private router:Router) { }
+  constructor(private router:Router ,
+    private authService:AuthService) { }
   
   ngOnInit() {
 
@@ -19,6 +21,12 @@ export class HomeComponent implements OnInit {
       
     }
 
+    onLogout(){
+this.authService.logout();
+    }
+    onLogin(){
+      this.authService.login();
+    }
 }
 
 
