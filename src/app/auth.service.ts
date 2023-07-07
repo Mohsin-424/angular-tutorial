@@ -27,13 +27,13 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthService {
-  loggedIn = false;
+  loggedIn = true;
 
   isAuthenticated(): Promise<boolean> {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve(this.loggedIn);
-      }, 100);
+      }, 900);
     });
   }
 
