@@ -1,0 +1,49 @@
+// export class AuthService {
+//   loggedIn = false;
+//   isAuthenticated() {
+//     const promise = new Promise(
+//       (resolve,reject)=>{
+//         setTimeout(() => {
+//           resolve(this.loggedIn)
+//         }, 900);
+//       }
+//     );
+//     return promise;
+//   }
+
+//   login() {
+//     this.loggedIn =  true;
+
+//   }
+//   logout() {
+//     this.loggedIn = false;
+//   }
+// } 
+
+
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthService {
+  loggedIn = false;
+
+  isAuthenticated(): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(this.loggedIn);
+      }, 100);
+    });
+  }
+
+  login() {
+    this.loggedIn = true;
+  }
+
+  logout() {
+    this.loggedIn = false;
+  }
+
+  constructor() { }
+}
