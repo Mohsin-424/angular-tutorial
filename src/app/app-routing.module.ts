@@ -1,3 +1,4 @@
+import { ErrorPageComponent } from './error-page/error-page.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -22,7 +23,7 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard],
     component: UsersComponent,
     children: [
-      { path: ':id/:name', component: UserComponent }
+  { path: ':id/:name', component: UserComponent }
     ]
   },
   {
@@ -30,11 +31,14 @@ const appRoutes: Routes = [
     component: ServersComponent,
     canActivateChild: [AuthGuard],
     children: [
-      { path: ':id', component: ServerComponent },
-      { path: ':id/edit', component: EditServerComponent, canDeactivate: [CanDeactivateGuard] }
+  { path: ':id', component: ServerComponent },
+  { path: ':id/edit', component: EditServerComponent, canDeactivate: [CanDeactivateGuard] }
     ]
   },
-  { path: 'not-found', component: PageNotFoundComponent },
+  // { path: 'not-found', component: PageNotFoundComponent },
+  { path: 'not-found', component:ErrorPageComponent,
+data: {message: 'Page is not found by Mohsin'} },
+  // To pass static data 
   { path: '**', redirectTo: '/not-found', pathMatch: 'full' }
 ];
 
