@@ -7,8 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth-guard.service';
 import { AuthService } from './auth.service';
 import { AppRoutingModule } from './app-routing.module';
-import { CanDeactivateGuard } from "./services/edit-server/can-deactivate-guard.service";
-
+import { CanDeactivateGuard } from './services/edit-server/can-deactivate-guard.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -39,12 +38,14 @@ import { ErrorPageComponent } from './error-page/error-page.component';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [
-    ServersService,
-    AuthGuard,
-    AuthService,
-    CanDeactivateGuard
-  ],
+providers: [
+  ServersService,
+  AuthGuard,
+  AuthService,
+  CanDeactivateGuard,
+  ServerResolver
+],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
