@@ -17,10 +17,10 @@ export class HomeComponent implements OnInit {
       const timeout = 1000;
       const intervalHandler = setInterval(() => {
         observer.next(count);
-        if (count ==9) {
+        if (count===9) {
           observer.complete();
         }
-        if (count > 10) {
+        if (count > 5) {
           // Observer.error method is used here
           observer.error(new Error('Count is greater than 10'));
         }
