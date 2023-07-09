@@ -21,3 +21,4 @@ export class UserComponent implements OnInit {
     });
   }
 }
+// Angular observables are protected by angular itself and we dont need to manually unsubscribe observables manually here
