@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription, interval, Observable } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -17,6 +17,13 @@ export class HomeComponent implements OnInit {
       const timeout = 1000;
       const intervalHandler = setInterval(() => {
         observer.next(count);
+        if (count ==9) {
+          observer.complete();
+        }
+        if (count > 10) {
+          // Observer.error method is used here
+          observer.error(new Error('Count is greater than 10'));
+        }
         count++;
       }, timeout);
 
@@ -25,9 +32,18 @@ export class HomeComponent implements OnInit {
       };
     });
 
-    this.firstObsSubscription = customIntervalObservable.subscribe(data => {
-      console.log(data);
-    });
+    this.firstObsSubscription = customIntervalObservable.subscribe(
+      data => {
+        console.log(data);
+      },
+      error => {
+        console.error(error);
+        alert(error);
+      } , () =>{
+        console.log('Complered');
+       alert('Completed');
+      }
+    );
   }
 
   ngOnDestroy() {
