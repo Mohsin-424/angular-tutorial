@@ -1,29 +1,38 @@
+import { Component, OnInit } from '@angular/core';
+import { Subscription, interval, Observable } from 'rxjs';
 
-import { interval} from "rxjs";
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit,OnDestroy {
+export class HomeComponent implements OnInit {
+  private firstObsSubscription!: Subscription;
 
- private firstObsSubscription!: Subscription;
- 
   constructor() { }
 
   ngOnInit() {
-    // I am building a new Observalbe here
-    // 1000 is period and next in refering next counting word as prefixes
-    this.firstObsSubscription = 
-    interval( 1000).subscribe( count => {
-      console.log(count);
+    const customIntervalObservable = new Observable<number>(observer => {
+      let count = 0;
+      const timeout = 1000;
+      const intervalHandler = setInterval(() => {
+        observer.next(count);
+        count++;
+      }, timeout);
+
+      return () => {
+        clearInterval(intervalHandler);
+      };
+    });
+
+    this.firstObsSubscription = customIntervalObservable.subscribe(data => {
+      console.log(data);
     });
   }
-  ngOnDestroy(): void {
-    this.firstObsSubscription.unsubscribe();
+
+  ngOnDestroy() {
+    if (this.firstObsSubscription) {
+      this.firstObsSubscription.unsubscribe();
+    }
   }
 }
-// We unsubscibe each Observable to prevent Memory leaks
-
