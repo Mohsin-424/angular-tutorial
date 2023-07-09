@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription, Observable } from 'rxjs';
-
+import { map ,filter} from "rxjs/operators";
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -17,10 +17,10 @@ export class HomeComponent implements OnInit {
       const timeout = 1000;
       const intervalHandler = setInterval(() => {
         observer.next(count);
-        if (count===9) {
+        if (count===5) {
           observer.complete();
         }
-        if (count > 5) {
+        if (count > 7) {
           // Observer.error method is used here
           observer.error(new Error('Count is greater than 10'));
         }
@@ -32,15 +32,32 @@ export class HomeComponent implements OnInit {
       };
     });
 
-    this.firstObsSubscription = customIntervalObservable.subscribe(
-      data => {
-        console.log(data);
+    // Here we are using Operators
+    
+
+
+
+
+
+
+
+    this.firstObsSubscription = customIntervalObservable.pipe(filter(data =>{
+      return data>0;
+    }),
+
+    map((data:number)=> {
+      return 'Round'+ (data+1);
+    }))
+       .subscribe(
+      (data: string) => {
+        console.log('Round:'+(data+1));
       },
-      error => {
+      (error:Error) =>{
+        
         console.error(error);
         alert(error);
-      } , () =>{
-        console.log('Complered');
+      } , () =>{ 
+        console.log('Completed');
        alert('Completed');
       }
     );
