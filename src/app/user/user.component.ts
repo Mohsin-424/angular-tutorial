@@ -1,3 +1,4 @@
+import { UserService } from './user.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
@@ -9,16 +10,19 @@ import { ActivatedRoute, Params } from '@angular/router';
 export class UserComponent implements OnInit {
   id!: number;
 
-  constructor(private route: ActivatedRoute) {
-  }
+  constructor(
+    private route: ActivatedRoute,
+    private userService: UserService
+  ) {}
 
   ngOnInit() {
-    // Here Params is an Observable
-    // /we subscibe observables to nake them ablke to emit data
     this.route.params.subscribe((params: Params) => {
-      // here +params is making id a number
       this.id = +params['id'];
     });
   }
+
+  onActivate() {
+    // this.userService.activatedEmitter.emit(true);
+    this.userService.activatedEmitter.next(true);
+  }
 }
-// Angular observables are protected by angular itself and we dont need to manually unsubscribe observables manually here
