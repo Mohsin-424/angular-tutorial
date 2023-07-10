@@ -8,6 +8,7 @@ import { NgForm } from "@angular/forms";
 export class AppComponent  {
   @ViewChild('f') signuopForm!:NgForm;
   defaultQuestion = 'Your Favourite Teacher';
+  answer = '';
   suggestUserName() {
     const suggestedName = 'Superuser';
 
