@@ -25,4 +25,5 @@ export class UserComponent implements OnInit {
     // this.userService.activatedEmitter.emit(true);
     this.userService.activatedEmitter.next(true);
   }
+  // Subject use Subject.next() ti emit some data
 }
