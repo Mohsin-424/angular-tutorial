@@ -17,6 +17,7 @@
               required
               >
           </div>
+          <!-- Username -->
           <button class="btn btn-default" type="button">Suggest an Username</button>
           <div class="form-group">
             <label for="email">Mail</label>
@@ -26,8 +27,10 @@
              class="form-control"
              ngModel
              name="email"
-             required>
+             required
+             email>
           </div>
+          <p *ngIf="">Please enter a valid value!</p>
         </div>
         
         <div class="form-group">
@@ -42,7 +45,9 @@
             <option value="teacher">Your first teacher?</option>
           </select>
         </div>
-        <button class="btn btn-primary" type="submit">Submit</button>
+        <button
+         class="btn btn-primary" type="submit"
+         [disabled]="!f.valid">Submit</button>
       </form>
     </div>
   </div>
