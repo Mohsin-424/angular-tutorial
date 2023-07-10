@@ -5,7 +5,8 @@
 
       <form (ngSubmit)="onSubmit()" #f="ngForm">
 
-        <div id="user-data">
+        <div id="user-data" ngModelGroup="userData"
+        #userData="ngModelGroup">
           <div class="form-group">
             <label for="username">Username</label>
             <input 
@@ -36,6 +37,15 @@
           
         </div>
         
+
+<p *ngIf="!userData.valid && userData.touched">Data is Invalid</p>
+        
+        
+
+
+
+
+          
         <div class="form-group">
           <label for="secret">Secret Questions</label>
           <select 
