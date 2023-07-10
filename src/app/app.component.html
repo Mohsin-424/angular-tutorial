@@ -14,6 +14,7 @@
               class="form-control"
               ngModel 
               name="username"
+              required
               >
           </div>
           <button class="btn btn-default" type="button">Suggest an Username</button>
@@ -24,7 +25,8 @@
              id="email" 
              class="form-control"
              ngModel
-             name="email">
+             name="email"
+             required>
           </div>
         </div>
         
@@ -34,7 +36,8 @@
           id="secret"
            class="form-control"
            ngModel
-           name="secret">
+           name="secret"
+           required>
             <option value="pet">Your first Pet?</option>
             <option value="teacher">Your first teacher?</option>
           </select>
