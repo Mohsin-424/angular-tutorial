@@ -1,59 +1,29 @@
-import { Component,ViewChild } from '@angular/core';
-import { NgForm } from "@angular/forms";
+import { NgForm } from '@angular/forms';
+import { Component,ViewChild} from '@angular/core';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent  {
-  @ViewChild('f') signuopForm!:NgForm;
-  defaultQuestion = 'Your Favourite Teacher';
-
-  answer = '';
-
-  genders = ['male' , 'female'];
+export class AppComponent {
+  @ViewChild('registrationForm', {static:false}) registrationForm!:NgForm;
   user = {
     username: '',
     email: '',
-    secretQuestion: '',
-    answer: '',
-    gender: ''
+    password: '',
+    confirmPassword: ''
   };
-  // I t has been set false so that we can display irt in DOM 
-submitted = false;
-  
-  suggestUserName() {
-    const suggestedName = 'Superuser';
-    //   this.signuopForm.setValue({
-    //     userData: {
-    //        username: suggestedName,
-    //        email: ''
-    //     },
-    //     secret: 'pet',
-    //     questionAnswer: '',
-    //     gender: 'male'
-    //   });
-    this.signuopForm.form.patchValue({
-      userData:{
-        username:suggestedName
-    }});
-  }
- 
-  
-  onSubmit() {
 
-console.log(this.signuopForm);
-this.submitted = true;
-this.user.username = this.signuopForm.value.userData.username;
-this.user.email = this.signuopForm.value.userData.email;
-this.user.secretQuestion = this.signuopForm.value.secret;
-this.user.answer = this.signuopForm.value.questionAnswer;
-this.user.gender = this. signuopForm.value.gender;
-//Restting Forms
-this.signuopForm.reset(); 
+  onregister(registrationForm: NgForm) {
+    if (registrationForm.valid) {
+      // Perform registration logic here, such as sending data to an API
+      console.log('Registration data:', this.user);
+    }
   }
 
-// From lesson 202 we are going to start reactive forms
+  // onSubmit(form: ElementRef){
+  //   console.log(form);
+    
+  // }
 }
-
-
