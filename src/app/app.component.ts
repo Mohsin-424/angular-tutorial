@@ -53,7 +53,7 @@ this.user.gender = this. signuopForm.value.gender;
 this.signuopForm.reset(); 
   }
 
-
+// From lesson 202 we are going to start reactive forms
 }
 
 
