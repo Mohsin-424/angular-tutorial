@@ -43,13 +43,7 @@
 
 <p *ngIf="!userData.valid && userData.touched">Data is Invalid</p>
         
-        
-
-
-
-
-          
-        <div class="form-group">
+         <div class="form-group">
           <label for="secret">Secret Questions</label>
           <select 
           id="secret"
@@ -86,7 +80,9 @@
       <div class="row" *ngIf = 'submitted'>
         <div class="col-xs-12">
 
-        
+        <!-- To represent the the entered data in the DOM -->
+
+
       <hr><h3>Your Data</h3>
       <p>Username:{{user.username}}</p>
       <p>Your Mail:{{user.email}}</p>
@@ -94,6 +90,7 @@
       <p>Answers:{{user.answer}}</p>
       <p>Gneder:{{user.gender}}</p>
 
+      
       </div>
       </div>
     </div>

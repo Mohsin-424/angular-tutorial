@@ -19,6 +19,7 @@ export class AppComponent  {
     answer: '',
     gender: ''
   };
+  // I t has been set false so that we can display irt in DOM 
 submitted = false;
   
   suggestUserName() {
@@ -33,16 +34,14 @@ submitted = false;
     //     gender: 'male'
     //   });
     this.signuopForm.form.patchValue({
-      // patch value overwrties parts of a form
       userData:{
-        // Set.value to set the whole frm
         username:suggestedName
     }});
   }
-  // onSubmit(form:NgForm){
-  //   console.log(form);
+ 
   
   onSubmit() {
+
 console.log(this.signuopForm);
 this.submitted = true;
 this.user.username = this.signuopForm.value.userData.username;
@@ -50,6 +49,11 @@ this.user.email = this.signuopForm.value.userData.email;
 this.user.secretQuestion = this.signuopForm.value.secret;
 this.user.answer = this.signuopForm.value.questionAnswer;
 this.user.gender = this. signuopForm.value.gender;
+//Restting Forms
+this.signuopForm.reset(); 
   }
+
+
 }
+
 
