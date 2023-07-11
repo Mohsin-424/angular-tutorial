@@ -1,30 +1,39 @@
-import { Component,OnInit } from '@angular/core';
-import { FormGroup , FormControl,Validators } from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
-genders = ['male', 'female'];
-signupForm!: FormGroup
-construcotr(){}
-ngOnInit(){
+export class AppComponent implements OnInit {
+  genders = ['male', 'female'];
+  signupForm!: FormGroup;
 
+  constructor() {}
 
-this.signupForm = new FormGroup({
-  // Making a nested FormGroup
-  'userData': new FormGroup({
-  'username': new FormControl(null, Validators.   required),
-    'email': new FormControl(null, [Validators.required, Validators.email]),
-  }),
+  ngOnInit() {
+    this.signupForm = new FormGroup({
+      userData: new FormGroup({
+        username: new FormControl(null, Validators.required),
+        email: new FormControl(null, [Validators.required, Validators.email]),
+        gender: new FormControl('male'),
+        hobbies: new FormArray([])
+      }),
+      gender: new FormControl(null)
+    });
+  }
 
-  
-  'gender': new FormControl(null)
-});
-}
-onSubmit(){
-  console.log(this.signupForm);
-  
-}
+  onSubmit() {
+    console.log(this.signupForm.value);
+  }
+
+  onAddHobby() {
+    const control = new FormControl(null, Validators.required);
+    (this.signupForm.get('userData.hobbies') as FormArray).push(control);
+  }
+
+  get hobbyControls() {
+    return (this.signupForm.get('userData.hobbies') as FormArray).controls;
+  }
 }
