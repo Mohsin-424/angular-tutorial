@@ -1,28 +1,37 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <form>
+      <form [formGroup]="signupForm">
+        <!--  For Username -->
         <div class="form-group">
           <label for="username">Username</label>
           <input
             type="text"
             id="username"
+            formControlName = "username"
             class="form-control">
         </div>
+        <!-- For Email -->
         <div class="form-group">
           <label for="email">email</label>
           <input
             type="text"
             id="email"
+           formControlName = "email"
+
             class="form-control">
         </div>
+        <!-- for Gneders -->
         <div class="radio" *ngFor="let gender of genders">
           <label>
             <input
               type="radio"
+              formControlName = "username"
+
               [value]="gender">{{ gender }}
           </label>
         </div>
+        <!-- Submot Button -->
         <button class="btn btn-primary" type="submit">Submit</button>
       </form>
     </div>
