@@ -23,15 +23,15 @@ submitted = false;
   
   suggestUserName() {
     const suggestedName = 'Superuser';
-    //   this.signuopForm.setValue({
-    //     userData: {
-    //        username: suggestedName,
-    //        email: ''
-    //     },
-    //     secret: 'pet',
-    //     questionAnswer: '',
-    //     gender: 'male'
-    //   });
+      this.signuopForm.setValue({
+        userData: {
+           username: suggestedName,
+           email: ''
+        },
+        secret: 'pet',
+        questionAnswer: '',
+        gender: 'male'
+      });
     this.signuopForm.form.patchValue({
       // patch value overwrties parts of a form
       userData:{
@@ -39,9 +39,12 @@ submitted = false;
         username:suggestedName
     }});
   }
+
   // onSubmit(form:NgForm){
   //   console.log(form);
-  
+  // }
+
+
   onSubmit() {
 console.log(this.signuopForm);
 this.submitted = true;
