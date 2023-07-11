@@ -16,4 +16,8 @@ this.signupForm = new FormGroup({
   'gender': new FormControl(null)
 });
 }
+onSubmit(){
+  console.log(this.signupForm);
+  
+}
 }

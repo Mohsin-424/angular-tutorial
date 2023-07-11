@@ -1,13 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <form [formGroup]="signupForm">
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
         <!--  For Username -->
         <div class="form-group">
           <label for="username">Username</label>
           <input
             type="text"
-            id="username"
+            id="username" 
             formControlName = "username"
             class="form-control">
         </div>
@@ -32,7 +32,7 @@
           </label>
         </div>
         <!-- Submot Button -->
-        <button class="btn btn-primary" type="submit">Submit</button>
+        <button class="btn btn-primary" type="submit" >Submit</button>
       </form>
     </div>
   </div>
