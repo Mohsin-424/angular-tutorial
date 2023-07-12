@@ -50,18 +50,11 @@
         </div>
         <!-- Explaining ngForm using hobbies -->
         <div formArrayName="hobbies">
-
-          <h3>Please enter your  Hobbies</h3>
-          
-          <button
-          type="button"
-          (click)="onAddHobby()"
-          >
-          Add Your Hobbies
+          <h3>Please enter your Hobbies</h3>
+          <button type="button" (click)="onAddHobby()">
+            Add Your Hobbies
           </button>
-
-
-             <div class="form-group" *ngFor="let hobbyControl of hobbyControls; let i = index">
+          <div class="form-group" *ngFor="let hobbyControl of hobbyControls; let i = index">
             <input
               type="text"
               class="form-control"
@@ -81,3 +74,4 @@
     </div>
   </div>
 </div>
+
