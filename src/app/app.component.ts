@@ -24,7 +24,7 @@ export class AppComponent {
 
     {
       instanceType: 'small',
-      name: 'Development Server',
+      name: 'Develop Server',
       status: 'offline',
       started: new Date()
     },
