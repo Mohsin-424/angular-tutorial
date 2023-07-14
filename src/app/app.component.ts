@@ -6,6 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  // Appstatus for Aycnch pipe
+  Appstatus = new Promise((resolve, reject) =>{
+    setTimeout(() => {
+      resolve  ('stable')
+    }, 2000);
+  });
 
   servers = [
     {

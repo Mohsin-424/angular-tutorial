@@ -7,7 +7,9 @@
       >
       <br>
       <button class="btn btn-primary" (click)="onAddServer()">Add Server</button>
-
+<br>
+<!-- After 2 sec promise will be subscribed and  data will be shown on DOM -->
+<h2>App Status :{{Appstatus | async}}</h2>
       <ul class="list-group">
         <li
           class="list-group-item"
