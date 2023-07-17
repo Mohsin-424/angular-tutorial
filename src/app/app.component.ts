@@ -1,66 +1,37 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  // Appstatus for Aycnch pipe
-  Appstatus = new Promise((resolve, reject) =>{
-    setTimeout(() => {
-      resolve  ('stable')
-    }, 2000);
-  });
+export class AppComponent implements OnInit {
+  loadedPosts = [];
 
-  servers = [
-    {
-      instanceType: 'medium',
-      name: 'Production Server',
-      status: 'stable',
-      started: new Date()
-    },
+  constructor(private http: HttpClient) {}
 
-    {
-      instanceType: 'large',
-      name: 'User Database',
-      status: 'stable',
-      started: new Date()
-    },
+  ngOnInit() {}
 
-    {
-      instanceType: 'small',
-      name: 'Develop Server',
-      status: 'offline',
-      started: new Date()
-    },
-
-    {
-      instanceType: 'small',
-      name: 'Testing Environment Server',
-      status: 'stable',
-      started: new Date()
-    }
-  ];
-
-
-filteredStatus = '';
-
-    getStatusClasses(server: {instanceType: string, name: string, status: string, started: Date}) {
-    return {
-      'list-group-item-success': server.status === 'stable',
-      'list-group-item-warning': server.status === 'offline',
-      'list-group-item-danger': server.status === 'critical'
-    };
+  onCreatePost(postData: { title: string; content: string }) {
+    // Send Http request
+    this.http
+      .post(
+        'https://maximal-muse-392816-default-rtdb.firebaseio.com/posts.json',
+        postData
+      )
+      .subscribe((responseData) => {
+        console.log(responseData);
+      });
   }
-  onAddServer(){
-    this.servers.push({
-      instanceType:'small' ,
-      name: 'New Server',
-      // status: 'unstable',
-      status: 'stable',
-      started: new Date()
+  // Rquest are seend by post method which also uses Observables to subscibe and send the post request
 
-    })
+
+  onFetchPosts() {
+    // Send Http request
+  }
+
+  onClearPosts() {
+    // Send Http request
   }
 }
