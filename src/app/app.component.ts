@@ -11,7 +11,9 @@ export class AppComponent implements OnInit {
 
   constructor(private http: HttpClient) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.fetchPost();
+  }
 
   onCreatePost(postData: { title: string; content: string }) {
     // Send Http request
@@ -29,9 +31,18 @@ export class AppComponent implements OnInit {
 
   onFetchPosts() {
     // Send Http request
+    this.fetchPost();
   }
 
   onClearPosts() {
     // Send Http request
+  }
+  // Get Request
+  private fetchPost() {
+this.http.get(
+  'https://maximal-muse-392816-default-rtdb.firebaseio.com/posts.json'
+).subscribe( posts =>{
+  console.log(posts);
+});
   }
 }
