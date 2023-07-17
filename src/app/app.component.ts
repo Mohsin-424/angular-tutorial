@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
   loadedPosts = [];
@@ -22,12 +23,10 @@ export class AppComponent implements OnInit {
         'https://maximal-muse-392816-default-rtdb.firebaseio.com/posts.json',
         postData
       )
-      .subscribe((responseData) => {
+      .subscribe((responseData: any) => {
         console.log(responseData);
       });
   }
-  // Rquest are seend by post method which also uses Observables to subscibe and send the post request
-
 
   onFetchPosts() {
     // Send Http request
@@ -37,12 +36,24 @@ export class AppComponent implements OnInit {
   onClearPosts() {
     // Send Http request
   }
-  // Get Request
+
   private fetchPost() {
-this.http.get(
-  'https://maximal-muse-392816-default-rtdb.firebaseio.com/posts.json'
-).subscribe( posts =>{
-  console.log(posts);
-});
+    this.http
+      .get('https://maximal-muse-392816-default-rtdb.firebaseio.com/posts.json')
+      .pipe(
+        map((responseData: { [key: string]: any }) => {
+          const postsArray = [];
+          for (const key in responseData) {
+            if (responseData.hasOwnProperty(key)) {
+              postsArray.push({...responseData[key] , 
+              id: key});
+            }
+          }
+          return postsArray;
+        })
+      )
+      .subscribe((posts) => {
+        console.log(posts);
+      });
   }
 }
