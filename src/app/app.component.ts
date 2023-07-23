@@ -11,6 +11,8 @@ import {  Post} from "./post.model";
 })
 export class AppComponent implements OnInit {
   loadedPosts:Post[] = [];
+  // Showing a Loading Indicactor
+  isFetching = false;
 
   constructor(private http: HttpClient) {}
 
@@ -20,6 +22,8 @@ export class AppComponent implements OnInit {
 
   onCreatePost(postData: { title: string; content: string }) {
     // Send Http request
+    this.isFetching = true;
+
     this.http
       .post(
         'https://http-28fc2-default-rtdb.europe-west1.firebasedatabase.app/posts.json',
@@ -61,7 +65,7 @@ export class AppComponent implements OnInit {
       .subscribe((posts) => {
         //  .... 
         // console.log(posts);
-
+this.isFetching = false;
 
         // It will fetch the loaded post
         this.loadedPosts = posts;
