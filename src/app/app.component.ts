@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
 
   onCreatePost(postData: { title: string; content: string }) {
     // Send Http request
-    this.isFetching = true;
+    // this.isFetching = true;
 
     this.http
       .post(
@@ -44,6 +44,8 @@ export class AppComponent implements OnInit {
   }
 
   private fetchPosts() {
+    this.isFetching = false;
+    
     this.http
       .get<{ [key:string]: Post}> ( // Specify 'any' as the response type too get data back
 
@@ -65,7 +67,7 @@ export class AppComponent implements OnInit {
       .subscribe((posts) => {
         //  .... 
         // console.log(posts);
-this.isFetching = false;
+        this.isFetching = false;
 
         // It will fetch the loaded post
         this.loadedPosts = posts;
