@@ -1,16 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Post } from './post.model';
-import { map,catchError  } from 'rxjs/operators';
-import { Subject,throwError } from "rxjs";
+import { map, catchError } from 'rxjs/operators';
+import { Subject, throwError } from 'rxjs';
+
 @Injectable({ providedIn: 'root' })
 export class PostsService {
   // Using Subject as an error
-
-   error = new Subject<string>();
-
-
-
+  error = new Subject<string>();
 
   constructor(private http: HttpClient) {}
 
@@ -22,28 +19,34 @@ export class PostsService {
         'https://http-28fc2-default-rtdb.europe-west1.firebasedatabase.app/posts.json',
         postData
       )
-      .subscribe((responseData) => {
-        console.log(responseData);
-      } ,error => {
-        this.error.next(error.message);
-        
-      } );
+      .subscribe(
+        (responseData) => {
+          console.log(responseData);
+        },
+        (error) => {
+          this.error.next(error.message);
+        }
+      );
   }
 
   DeletePosts() {
     return this.http.delete(
       'https://http-28fc2-default-rtdb.europe-west1.firebasedatabase.app/posts.json'
     );
-
   }
+
   fetchPosts() {
     // Implement the logic to fetch posts from the server
+    const searchParams = new HttpParams()
+      .append('print', 'pretty')
+      .append('custom', 'key');
 
     return this.http
       .get<{ [key: string]: Post }>(
-        'https://http-28fc2-default-rtdb.europe-west1.firebasedatabase.app/posts.json', 
+        'https://http-28fc2-default-rtdb.europe-west1.firebasedatabase.app/posts.json',
         {
-          headers: new HttpHeaders({"Custom-Header": 'Hello'})
+          headers: new HttpHeaders({ 'Custom-Header': 'Hello' }),
+          params: searchParams,
         }
       )
       .pipe(
@@ -56,11 +59,10 @@ export class PostsService {
           }
           return postsArray;
         }),
-          catchError( errorRes => {
-            //Sent to analytics Server
-             return throwError(errorRes)
-          })
-      )
+        catchError((errorRes) => {
+          // Sent to analytics Server
+          return throwError(errorRes);
+        })
+      );
   }
 }
-
