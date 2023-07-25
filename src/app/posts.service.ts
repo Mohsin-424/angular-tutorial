@@ -2,9 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Post } from './post.model';
 import { map } from 'rxjs/operators';
+import { Subject } from "rxjs";
 
 @Injectable({ providedIn: 'root' })
 export class PostsService {
+  // Using Subject as an error
+
+   error = new Subject<string>();
+
+
+
+
   constructor(private http: HttpClient) {}
 
   createAndStorePost(title: string, content: string) {
@@ -17,14 +25,17 @@ export class PostsService {
       )
       .subscribe((responseData) => {
         console.log(responseData);
-      });
+      } ,error => {
+        this.error.next(error.message);
+        
+      } );
   }
 
-  clearPosts() {
+  DeletePosts() {
     return this.http.delete(
       'https://http-28fc2-default-rtdb.europe-west1.firebasedatabase.app/posts.json'
     );
-    
+
   }
   fetchPosts() {
     // Implement the logic to fetch posts from the server
