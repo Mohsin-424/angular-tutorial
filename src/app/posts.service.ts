@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Post } from './post.model';
 import { map,catchError  } from 'rxjs/operators';
 import { Subject,throwError } from "rxjs";
-
 @Injectable({ providedIn: 'root' })
 export class PostsService {
   // Using Subject as an error
@@ -42,7 +41,10 @@ export class PostsService {
 
     return this.http
       .get<{ [key: string]: Post }>(
-        'https://http-28fc2-default-rtdb.europe-west1.firebasedatabase.app/posts.json'
+        'https://http-28fc2-default-rtdb.europe-west1.firebasedatabase.app/posts.json', 
+        {
+          headers: new HttpHeaders({"Custom-Header": 'Hello'})
+        }
       )
       .pipe(
         map((responseData) => {
