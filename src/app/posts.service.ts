@@ -1,38 +1,26 @@
 import { Injectable } from '@angular/core';
-import { HttpClient,
-    HttpHeaders,
-    HttpParams,
-    HttpEventType } from '@angular/common/http';
-import { Post } from './post.model';
-import { map,
-   catchError,
-    tap } from 'rxjs/operators';
-import { Subject,
-   throwError } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { map, catchError } from 'rxjs/operators';
+import { Subject, throwError } from 'rxjs';
 
+import { Post } from './post.model';
 
 @Injectable({ providedIn: 'root' })
 export class PostsService {
-  // Using Subject as an error
   error = new Subject<string>();
 
   constructor(private http: HttpClient) {}
 
   createAndStorePost(title: string, content: string) {
     const postData: Post = { title: title, content: content };
-
     this.http
       .post<{ name: string }>(
-        'https://http-28fc2-default-rtdb.europe-west1.firebasedatabase.app/posts.json',
-        postData,{
-          observe: 'response'
-        }
+        'https://ng-complete-guide-c56d3.firebaseio.com/posts.json',
+        postData
       )
       .subscribe(
         (responseData) => {
-
           console.log(responseData);
-
         },
         (error) => {
           this.error.next(error.message);
@@ -40,41 +28,16 @@ export class PostsService {
       );
   }
 
-  DeletePosts() {
-    return this.http.delete(
-      'https://http-28fc2-default-rtdb.europe-west1.firebasedatabase.app/posts.json',{
-        observe: 'events'
-      })
-      .pipe(
-      tap (event=> { 
-        console.log(event);
-        if(event.type === HttpEventType.Sent){
-          //  ....
-          
-        }
-        if( event.type === HttpEventType.Response) {
-          console.log(event.body)
-        }
-        
-    })
-
-    );
-  }
-
   fetchPosts() {
-    // Implement the logic to fetch posts from the server
-    const searchParams = new HttpParams()
-      .append('print', 'pretty')
-      .append('custom', 'key');
-
+    let searchParams = new HttpParams();
+    searchParams = searchParams.append('print', 'pretty');
+    searchParams = searchParams.append('custom', 'key');
     return this.http
-      .get<{ [key: string]: Post }>(
-        'https://http-28fc2-default-rtdb.europe-west1.firebasedatabase.app/posts.json',
-        {
-          headers: new HttpHeaders({ 'Custom-Header': 'Hello' }),
-          params: searchParams,
-        }
-      )
+      .get<any>('https://ng-complete-guide-c56d3.firebaseio.com/posts.json', {
+        headers: new HttpHeaders({ 'Custom-Header': 'Hello' }),
+        params: searchParams,
+        responseType: 'json', // <-- Change 'text' to 'json'
+      })
       .pipe(
         map((responseData) => {
           const postsArray: Post[] = [];
@@ -86,9 +49,18 @@ export class PostsService {
           return postsArray;
         }),
         catchError((errorRes) => {
-          // Sent to analytics Server
+          // Send to analytics server
           return throwError(errorRes);
         })
       );
+  }
+
+  deletePosts() {
+    return this.http.delete(
+      'https://ng-complete-guide-c56d3.firebaseio.com/posts.json',
+      {
+        observe: 'events',
+      }
+    );
   }
 }
