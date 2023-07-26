@@ -36,7 +36,8 @@ export class PostsService {
       .get<any>('https://ng-complete-guide-c56d3.firebaseio.com/posts.json', {
         headers: new HttpHeaders({ 'Custom-Header': 'Hello' }),
         params: searchParams,
-        responseType: 'json', // <-- Change 'text' to 'json'
+        responseType: 'json', 
+        // <-- Change 'text' to 'json'
       })
       .pipe(
         map((responseData) => {
