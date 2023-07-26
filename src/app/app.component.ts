@@ -9,28 +9,28 @@ import { PostsService } from './posts.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, OnDestroy {
   loadedPosts: Post[] = [];
   isFetching = false;
-  error:string| null = null;
-  private errorSub! : Subscription;
+  error: string|null = null;
+  private errorSub!: Subscription;
 
   constructor(private http: HttpClient, private postsService: PostsService) {}
 
   ngOnInit() {
-    this.errorSub = this.postsService.error.subscribe((errorMessage) => {
+    this.errorSub = this.postsService.error.subscribe(errorMessage => {
       this.error = errorMessage;
     });
 
     this.isFetching = true;
     this.postsService.fetchPosts().subscribe(
-      (posts) => {
+      posts => {
         this.isFetching = false;
         this.loadedPosts = posts;
       },
-      (error) => {
+      error => {
         this.isFetching = false;
         this.error = error.message;
       }
@@ -46,11 +46,11 @@ export class AppComponent implements OnInit, OnDestroy {
     // Send Http request
     this.isFetching = true;
     this.postsService.fetchPosts().subscribe(
-      (posts) => {
+      posts => {
         this.isFetching = false;
         this.loadedPosts = posts;
       },
-      (error) => {
+      error => {
         this.isFetching = false;
         this.error = error.message;
         console.log(error);
