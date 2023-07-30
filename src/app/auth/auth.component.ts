@@ -11,6 +11,7 @@ export class AuthComponent {
   isLoginMode = true;
   isLoading = false;
   error: string | null = null;
+  showPassword = false; // Added variable to control password visibility
 
   constructor(private authService: AuthService) {}
 
@@ -43,5 +44,8 @@ export class AuthComponent {
     }
 
     form.reset();
+  }
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
   }
 }
