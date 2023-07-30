@@ -1,0 +1,79 @@
+<div class="row">
+  <div class="col-md-12">
+    <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              class="form-control"
+              formControlName="name"
+            />
+          </div>
+          <div class="form-group">
+            <label for="imagePath">Image URL</label>
+            <input
+              type="text"
+              id="imagePath"
+              class="form-control"
+              formControlName="imagePath"
+            />
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea
+              id="description"
+              class="form-control"
+              formControlName="description"
+            ></textarea>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <h4>Ingredients</h4>
+          <div
+            class="row"
+            formArrayName="ingredients"
+            *ngFor="let ingredientControl of ingredients; let i = index"
+          >
+            <div class="col-md-8">
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="name"
+                  placeholder="Name"
+                />
+                </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <input
+              type="number"
+              class="form-control"
+              formControlName="amount"
+              placeholder="Amount"
+            />
+          </div>
+        </div>
+        <div class="col-md-2">
+          <a (click)="onDeleteIngredient(i)" class="btn btn-danger">
+            <i class="fa fa-trash"></i>
+          </a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <button type="button" class="btn btn-primary" (click)="onAddIngredient()">Add Ingredient</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <button type="submit" class="btn btn-success mr-2">Save</button>
+      <button type="button" class="btn btn-secondary" (click)="onCancel()"> Cancel </button>
+    </div>
+  </div>
+</form>
